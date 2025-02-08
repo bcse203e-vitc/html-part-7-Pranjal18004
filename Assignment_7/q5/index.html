@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Character & Word Counter</h2>
+    <textarea id="textInput" placeholder="Type here..." oninput="updateCounts()"></textarea>
+    <p>Characters: <span id="charCount">0</span></p>
+    <p>Words: <span id="wordCount">0</span></p>
+    <h3>Repeated Words:</h3>
+    <p id="repeatedWords"></p>
+    <script>
+         function updateCounts() {
+            let text = document.getElementById("textInput").value;
+            let charCount = text.length;
+            let words = text.trim().toLowerCase().split(/\s+/).filter(word => word.length > 0);
+            let wordCount = words.length;
+
+            document.getElementById("charCount").textContent = charCount;
+            document.getElementById("wordCount").textContent = wordCount;
+
+            highlightRepeatedWords(words);
+        }
+
+        function highlightRepeatedWords(words) {
+            let wordMap = {};
+            let repeated = new Set();
+
+            words.forEach(word => {
+                if (wordMap[word]) {
+                    wordMap[word]++;
+                    repeated.add(word);
+                } else {
+                    wordMap[word] = 1;
+                }
+            });
+
+            let repeatedWords = repeated.size > 0 ? [...repeated].join(", ") : "None";
+            document.getElementById("repeatedWords").textContent = repeatedWords;
+        }
+    </script>
+</body>
+</html>

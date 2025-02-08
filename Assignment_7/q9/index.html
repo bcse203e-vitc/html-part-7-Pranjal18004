@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Event-Driven Background Color Changer</h1>
+    <button id="red">Red</button>
+    <button id="green">Green</button>
+    <button id="blue">Blue</button>
+    <button id="random">Random</button>
+    <script>
+          document.getElementById("red").addEventListener("click", function() {
+            document.body.style.backgroundColor = "red";
+        });
+
+        document.getElementById("green").addEventListener("click", function() {
+            document.body.style.backgroundColor = "green";
+        });
+
+        document.getElementById("blue").addEventListener("click", function() {
+            document.body.style.backgroundColor = "blue";
+        });
+
+        document.getElementById("random").addEventListener("click", function() {
+            let randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+            document.body.style.backgroundColor = randomColor;
+        });
+    </script>
+</body>
+</html>
